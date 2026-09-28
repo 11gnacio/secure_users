@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block titulo %}Registro de Usuario{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4">
+                <h2 class="mb-4 text-center text-primary">Registro</h2>
+
+                {% with messages = get_flashed_messages(category_filter=["registro"]) %}
+                    {% if messages %}
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                                <p class="mb-0">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <form action="/registrar" method="POST">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
+                </form>
+
+                <p class="text-center mb-0">
+                    ¿Ya tienes una cuenta? <a href="/">Inicia Sesión aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
